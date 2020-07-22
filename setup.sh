@@ -21,6 +21,8 @@ mkdir -p /tmp/tw/rawData/stationStatus/checkpoints
 mkdir -p /tmp/tw/rawData/stationStatus/data
 mkdir -p /tmp/tw/rawData/stationSanFrancisco/checkpoints
 mkdir -p /tmp/tw/rawData/stationSanFrancisco/data
+mkdir -p /tmp/tw/rawData/stationMarseille/checkpoints
+mkdir -p /tmp/tw/rawData/stationMarseille/data
 mkdir -p /tmp/tw/stationMart/checkpoints
 mkdir -p /tmp/tw/stationMart/data
 
@@ -46,6 +48,12 @@ $zk_command create /tw/stationDataSF/kafkaBrokers 127.0.0.1:9092
 $zk_command create /tw/stationDataSF/topic station_data_sf
 $zk_command create /tw/stationDataSF/checkpointLocation /tmp/tw/rawData/stationDataSF/checkpoints
 $zk_command create /tw/stationDataSF/dataLocation /tmp/tw/rawData/stationDataSF/data
+
+$zk_command create /tw/stationDataMarseille ''
+$zk_command create /tw/stationDataMarseille/kafkaBrokers 127.0.0.1:9092
+$zk_command create /tw/stationDataMarseille/topic station_data_marseille
+$zk_command create /tw/stationDataMarseille/checkpointLocation /tmp/tw/rawData/stationDataMarseille/checkpoints
+$zk_command create /tw/stationDataMarseille/dataLocation /tmp/tw/rawData/stationDataMarseille/data
 
 
 $zk_command create /tw/output ''
