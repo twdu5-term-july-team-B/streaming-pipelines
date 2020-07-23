@@ -99,6 +99,7 @@ services:
           - station-information-producer
           - station-status-producer
           - station-san-francisco-producer
+          - station-marseille-producer
           - hadoop-seed
           - zookeeper-seed
         volumes:
@@ -116,6 +117,7 @@ services:
           - station-information-producer
           - station-status-producer
           - station-san-francisco-producer
+          - station-marseille-producer
           - hadoop-seed
           - zookeeper-seed
         volumes:
@@ -166,6 +168,7 @@ services:
           - kafka
           - station-status-producer
           - station-san-francisco-producer
+          - station-marseille-producer
           - raw-station-status-data-saver
         volumes:
           - ~/.ivy2:/root/.ivy2:rw
