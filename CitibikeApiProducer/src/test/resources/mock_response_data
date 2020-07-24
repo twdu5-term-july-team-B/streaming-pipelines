@@ -1,0 +1,51 @@
+{
+"network": {
+"company": [
+"BCycle, LLC"
+],
+"gbfs_href": "https://gbfs.bcycle.com/bcycle_austin/gbfs.json",
+"href": "/v2/networks/austin",
+"id": "austin",
+"location": {
+"city": "Austin, TX",
+"country": "US",
+"latitude": 30.26408,
+"longitude": -97.74355
+},
+"name": "Austin B-cycle",
+"stations": [
+{
+"empty_slots": 7,
+"extra": {
+"address": "672 Henderson Street",
+"last_updated": 1595519730,
+"renting": 1,
+"returning": 1,
+"uid": "bcycle_austin_3685"
+},
+"free_bikes": 6,
+"id": "8723bfa08ec83b133f6a9aeecd075f51",
+"latitude": 30.27217,
+"longitude": -97.75246,
+"name": "9th/Henderson",
+"timestamp": "2020-07-23T15:56:25.651000Z"
+},
+{
+"empty_slots": 4,
+"extra": {
+"address": "799 South Congress Avenue",
+"last_updated": 1595519730,
+"renting": 1,
+"returning": 1,
+"uid": "bcycle_austin_4048"
+},
+"free_bikes": 9,
+"id": "568256d098257d6e8433513638f5257b",
+"latitude": 30.25495,
+"longitude": -97.74755,
+"name": "South Congress @ Bouldin Creek",
+"timestamp": "2020-07-23T15:56:25.660000Z"
+}
+]
+}
+}
