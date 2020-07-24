@@ -1,7 +1,6 @@
 package com.tw;
 
 import com.tw.services.ApiProducer;
-import org.junit.Before;
 import org.junit.Test;
 
 import org.junit.runner.RunWith;
@@ -30,16 +29,8 @@ public class ProducerSchedulerTest {
     @Mock
     private RestTemplate restTemplate;
 
-    @Mock
-    private HttpEntity<String> httpEntity;
-
     @InjectMocks
     private ProducerScheduler producerScheduler;
-
-    @Before
-    public void setUp() {
-        this.producerScheduler = new ProducerScheduler(apiProducer,restTemplate,httpEntity);
-    }
 
     @Test
     public void schedulerShouldSendMockResponseIfReceivesTestUrl() throws IOException {

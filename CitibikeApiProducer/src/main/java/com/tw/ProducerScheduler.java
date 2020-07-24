@@ -1,7 +1,6 @@
 package com.tw;
 
 import com.tw.services.ApiProducer;
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -14,26 +13,18 @@ import java.io.*;
 @Component
 public class ProducerScheduler {
 
-    //private final RestTemplate restTemplate;
-
-    private final ApiProducer apiProducer;
-
-    private HttpEntity<String> response;
+    @Autowired
+    private ApiProducer apiProducer;
 
     @Value("${producer.url}")
     private String url;
 
-    @Autowired
-    public ProducerScheduler(ApiProducer apiProducer, RestTemplate template, HttpEntity<String> response){
-        this.apiProducer = apiProducer;
-        //this.restTemplate = template;
-        this.response = response;
-    }
-
     @Scheduled(cron="${producer.cron}")
     public void scheduledProducer(RestTemplate restTemplate) throws IOException {
+        HttpEntity<String> response;
+
         if(url.equals("testurl")) {
-            response = new HttpEntity<String>(readTestData());
+            response = new HttpEntity<>(readTestData());
         }
         else{
            response = restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, String.class);
