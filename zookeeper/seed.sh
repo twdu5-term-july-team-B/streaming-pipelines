@@ -31,6 +31,16 @@ $zk_command create /tw/stationDataMarseille/topic station_data_marseille
 $zk_command create /tw/stationDataMarseille/checkpointLocation hdfs://$hdfs_server/tw/rawData/stationDataMarseille/checkpoints
 $zk_command create /tw/stationDataMarseille/dataLocation hdfs://$hdfs_server/tw/rawData/stationDataMarseille/data
 
+$zk_command create /tw/stationDataTest ''
+$zk_command create /tw/stationDataTest/kafkaBrokers $kafka_server
+$zk_command create /tw/stationDataTest/topic station_data_test
+$zk_command create /tw/stationDataTest/checkpointLocation hdfs://$hdfs_server/tw/rawData/stationDataTest/checkpoints
+$zk_command create /tw/stationDataTest/dataLocation hdfs://$hdfs_server/tw/rawData/stationDataTest/data
+
 $zk_command create /tw/output ''
 $zk_command create /tw/output/checkpointLocation hdfs://$hdfs_server/tw/stationMart/checkpoints
 $zk_command create /tw/output/dataLocation hdfs://$hdfs_server/tw/stationMart/data
+
+$zk_command create /tw/outputTest ''
+$zk_command create /tw/outputTest/checkpointLocationTest hdfs://$hdfs_server/tw/stationMartTest/checkpoints
+$zk_command create /tw/outputTest/dataLocationTest hdfs://$hdfs_server/tw/stationMartTest/data
