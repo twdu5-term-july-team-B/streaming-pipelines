@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "producer_id": "producer_station-marseille",
+    "size": 48452,
+    "message_id": "c4bb8a1b-c6a6-4995-b017-a1d4b70c8196",
+    "ingestion_time": 1595875851221
+  },
+  "payload": {
+    "network": {
+      "company": [
+        "JCDecaux"
+      ],
+      "href": "/v2/networks/le-velo",
+      "id": "le-velo",
+      "license": {
+        "name": "Open Licence",
+        "url": "https://developer.jcdecaux.com/#/opendata/licence"
+      },
+      "location": {
+        "city": "Marseille",
+        "country": "FR",
+        "latitude": 43.296482,
+        "longitude": 5.36978
+      },
+      "name": "Le v\u00e9lo",
+      "source": "https://developer.jcdecaux.com",
+      "stations": [
+        {
+          "empty_slots": 19,
+          "extra": {
+            "address": "391 MICHELET - 391 BOULEVARD MICHELET",
+            "banking": true,
+            "bonus": false,
+            "last_update": 1595875488000,
+            "slots": 19,
+            "status": "OPEN",
+            "uid": 8149
+          },
+          "free_bikes": 0,
+          "id": "686e48654a218c70daf950a4e893e5b0",
+          "latitude": 43.25402727813068,
+          "longitude": 5.401873594694653,
+          "name": "8149-391 MICHELET",
+          "timestamp": "2020-07-27T18:49:12.664000Z"
+        },
+        {
+          "empty_slots": 5,
+          "extra": {
+            "address": "TEISSEIRE ROUBAUD - ANGLE RUE RAYMOND TEISSEIRE ET RUE MAGUY ROUBAUD",
+            "banking": true,
+            "bonus": false,
+            "last_update": 1595875391000,
+            "slots": 10,
+            "status": "OPEN",
+            "uid": 9207
+          },
+          "free_bikes": 5,
+          "id": "259c5e65f9e2af98046069144c666aa6",
+          "latitude": 43.27252367086013,
+          "longitude": 5.399686062414487,
+          "name": "9207- TEISSEIRE - ROUBAUD",
+          "timestamp": "2020-07-27T18:49:12.665000Z"
+        }
+      ]
+    }
+  }
+}

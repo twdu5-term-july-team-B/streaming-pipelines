@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "producer_id": "producer_station-san_francisco",
+    "size": 131547,
+    "message_id": "16f46321-af66-4a82-bdfa-b64b2a608733",
+    "ingestion_time": 1595868752200
+  },
+  "payload": {
+    "network": {
+      "company": [
+        "Motivate International, Inc."
+      ],
+      "gbfs_href": "https://gbfs.fordgobike.com/gbfs/gbfs.json",
+      "href": "/v2/networks/ford-gobike",
+      "id": "ford-gobike",
+      "location": {
+        "city": "San Francisco Bay Area, CA",
+        "country": "US",
+        "latitude": 37.7141454,
+        "longitude": -122.25
+      },
+      "name": "Bay Wheels",
+      "stations": [
+        {
+          "empty_slots": 8,
+          "extra": {
+            "address": null,
+            "last_updated": 1595849681,
+            "renting": 1,
+            "returning": 0,
+            "uid": "340"
+          },
+          "free_bikes": 7,
+          "id": "d0e8f4f1834b7b33a3faf8882f567ab8",
+          "latitude": 37.849735,
+          "longitude": -122.270582,
+          "name": "Harmon St at Adeline St",
+          "timestamp": "2020-07-27T16:47:42.394000Z"
+        },
+        {
+          "empty_slots": 9,
+          "extra": {
+            "address": null,
+            "last_updated": 1595866181,
+            "renting": 1,
+            "returning": 1,
+            "uid": "341"
+          },
+          "free_bikes": 2,
+          "id": "983514094dd808b1604da2dcfc2d09af",
+          "latitude": 37.33618830029063,
+          "longitude": -121.88927650451659,
+          "name": "Fountain Alley at S 2nd St",
+          "timestamp": "2020-07-27T16:47:42.403000Z"
+        }
+      ]
+    }
+  }
+}
