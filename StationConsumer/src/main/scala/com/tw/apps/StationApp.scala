@@ -4,6 +4,7 @@ import StationDataTransformation._
 import org.apache.curator.framework.CuratorFrameworkFactory
 import org.apache.curator.retry.ExponentialBackoffRetry
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.streaming.Trigger
 
 object StationApp {
 
@@ -75,6 +76,7 @@ object StationApp {
       .writeStream
       .format("overwriteCSV")
       .outputMode("complete")
+      .trigger(Trigger.ProcessingTime("5 minutes"))
       .option("header", true)
       .option("truncate", false)
       .option("checkpointLocation", checkpointLocation)
