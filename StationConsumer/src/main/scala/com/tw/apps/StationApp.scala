@@ -1,6 +1,7 @@
 package com.tw.apps
 
-import StationDataTransformation._
+import StationDataTransformation.nycStationStatusJson2DF
+import StationDataTransformation.sfStationStatusJson2DF
 import org.apache.curator.framework.CuratorFrameworkFactory
 import org.apache.curator.retry.ExponentialBackoffRetry
 import org.apache.spark.sql.SparkSession
@@ -9,7 +10,9 @@ object StationApp {
 
   def main(args: Array[String]): Unit = {
 
-    val zookeeperConnectionString = if (args.isEmpty) "zookeeper:2181" else args(0)
+    val isTest = if (args.length >= 1 && args(0).equals("test")) true else false
+
+    val zookeeperConnectionString = if (args.length <= 1) "zookeeper:2181" else args(1)
 
     val retryPolicy = new ExponentialBackoffRetry(1000, 3)
 
@@ -19,14 +22,19 @@ object StationApp {
 
     val stationKafkaBrokers = new String(zkClient.getData.forPath("/tw/stationStatus/kafkaBrokers"))
 
-    val nycStationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataNYC/topic"))
-    val sfStationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataSF/topic"))
+    var nycStationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataNYC/topic"))
+    var sfStationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataSF/topic"))
+    var checkpointLocation = new String(zkClient.getData.watched.forPath("/tw/output/checkpointLocation"))
+    var outputLocation = new String(zkClient.getData.watched.forPath("/tw/output/dataLocation"))
 
-    val checkpointLocation = new String(
-      zkClient.getData.watched.forPath("/tw/output/checkpointLocation"))
-
-    val outputLocation = new String(
-      zkClient.getData.watched.forPath("/tw/output/dataLocation"))
+    if (isTest) {
+      nycStationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataNYCTest/topic"))
+      sfStationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataTest/topic/sf"))
+      checkpointLocation = new String(
+        zkClient.getData.watched.forPath("/tw/testOutput/checkpointLocation"))
+      outputLocation = new String(
+        zkClient.getData.watched.forPath("/tw/testOutput/dataLocation"))
+    }
 
     val spark = SparkSession.builder
       .appName("StationConsumer")
