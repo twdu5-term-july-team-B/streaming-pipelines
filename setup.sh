@@ -59,13 +59,23 @@ $zk_command create /tw/stationDataMarseille/topic station_data_marseille
 $zk_command create /tw/stationDataMarseille/checkpointLocation /tmp/tw/rawData/stationDataMarseille/checkpoints
 $zk_command create /tw/stationDataMarseille/dataLocation /tmp/tw/rawData/stationDataMarseille/data
 
-$zk_command create /tw/StationDataTest ''
-$zk_command create /tw/StationDataTest/kafkaBrokers 127.0.0.1:9092
-$zk_command create /tw/StationDataTest/topic/info station_mock_information
-$zk_command create /tw/StationDataTest/topic/status station_mock_status
-$zk_command create /tw/StationDataTest/topic/sf station_mock_sf
-$zk_command create /tw/StationDataTest/checkpointLocation /tmp/tw/rawData/StationDataTest/checkpoints
-$zk_command create /tw/StationDataTest/dataLocation /tmp/tw/rawData/StationDataTest/data
+$zk_command create /tw/StationDataTestInformation ''
+$zk_command create /tw/StationDataTestInformation/kafkaBrokers 127.0.0.1:9092
+$zk_command create /tw/StationDataTestInformation/topic station_mock_information
+$zk_command create /tw/StationDataTestInformation/checkpointLocation /tmp/tw/rawData/StationDataTestInformation/checkpoints
+$zk_command create /tw/StationDataTestInformation/dataLocation /tmp/tw/rawData/StationDataTestInformation/data
+
+$zk_command create /tw/StationDataTestStatus ''
+$zk_command create /tw/StationDataTestStatus/kafkaBrokers 127.0.0.1:9092
+$zk_command create /tw/StationDataTestStatus/topic station_mock_status
+$zk_command create /tw/StationDataTestStatus/checkpointLocation /tmp/tw/rawData/StationDataTestStatus/checkpoints
+$zk_command create /tw/StationDataTestStatus/dataLocation /tmp/tw/rawData/StationDataTestStatus/data
+
+$zk_command create /tw/StationDataTestSF ''
+$zk_command create /tw/StationDataTestSF/kafkaBrokers 127.0.0.1:9092
+$zk_command create /tw/StationDataTestSF/topic station_mock_sf
+$zk_command create /tw/StationDataTestSF/checkpointLocation /tmp/tw/rawData/StationDataTestSF/checkpoints
+$zk_command create /tw/StationDataTestSF/dataLocation /tmp/tw/rawData/StationDataTestSF/data
 
 $zk_command create /tw/testOutput ''
 $zk_command create /tw/testOutput/checkpointLocation /tmp/tw/stationMartTest/checkpoints

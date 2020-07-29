@@ -29,7 +29,7 @@ object StationApp {
 
     if (isTest) {
       nycStationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataNYCTest/topic"))
-      sfStationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataTest/topic/sf"))
+      sfStationTopic = new String(zkClient.getData.watched.forPath("/tw/StationDataTestSF/topic"))
       checkpointLocation = new String(
         zkClient.getData.watched.forPath("/tw/testOutput/checkpointLocation"))
       outputLocation = new String(

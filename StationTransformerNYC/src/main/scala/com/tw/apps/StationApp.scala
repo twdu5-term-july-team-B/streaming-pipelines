@@ -21,7 +21,10 @@ object StationApp {
       if (args.length >= 2) {
         zookeeperConnectionString = args(1)
       }
-    } else zookeeperConnectionString = args(0)
+    }
+    else if (args.length >= 1) {
+      zookeeperConnectionString = args(0)
+    }
 
     val retryPolicy = new ExponentialBackoffRetry(1000, 3)
 
@@ -29,20 +32,27 @@ object StationApp {
 
     zkClient.start()
 
-    val kafkaBrokers = new String(zkClient.getData.forPath("/tw/stationStatus/kafkaBrokers"))
+    var kafkaBrokers: String = ""
 
-    var stationStatusTopic = new String(zkClient.getData.watched.forPath("/tw/stationStatus/topic"))
-    var stationInformationTopic = new String(zkClient.getData.watched.forPath("/tw/stationInformation/topic"))
-    var stationDataNYC = new String(zkClient.getData.watched.forPath("/tw/stationDataNYC/topic"))
-    var checkpointLocation = new String(zkClient.getData.watched.forPath("/tw/output/checkpointLocation"))
-
+    var stationStatusTopic: String = ""
+    var stationInformationTopic: String = ""
+    var stationDataNYC: String = ""
+    var checkpointLocation: String = ""
 
     if(isTest) {
-      stationStatusTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataTest/topic/status"))
-      stationInformationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataTest/topic/info"))
+      kafkaBrokers = new String(zkClient.getData.forPath("/tw/StationDataTestStatus/kafkaBrokers"))
+      stationStatusTopic = new String(zkClient.getData.watched.forPath("/tw/StationDataTestStatus/topic"))
+      stationInformationTopic = new String(zkClient.getData.watched.forPath("/tw/StationDataTestInformation/topic"))
       stationDataNYC = new String(zkClient.getData.watched.forPath("/tw/stationDataNYCTest/topic"))
       checkpointLocation = new String(
         zkClient.getData.watched.forPath("/tw/testOutput/checkpointLocation"))
+    }
+    else {
+      kafkaBrokers = new String(zkClient.getData.forPath("/tw/stationStatus/kafkaBrokers"))
+      stationStatusTopic = new String(zkClient.getData.watched.forPath("/tw/stationStatus/topic"))
+      stationInformationTopic = new String(zkClient.getData.watched.forPath("/tw/stationInformation/topic"))
+      stationDataNYC = new String(zkClient.getData.watched.forPath("/tw/stationDataNYC/topic"))
+      checkpointLocation = new String(zkClient.getData.watched.forPath("/tw/output/checkpointLocation"))
     }
 
     val spark = SparkSession.builder
