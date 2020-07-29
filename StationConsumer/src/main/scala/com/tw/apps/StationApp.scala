@@ -76,7 +76,6 @@ object StationApp {
       .writeStream
       .format("overwriteCSV")
       .outputMode("complete")
-      .trigger(Trigger.ProcessingTime("5 minutes"))
       .option("header", true)
       .option("truncate", false)
       .option("checkpointLocation", checkpointLocation)
