@@ -12,7 +12,16 @@ object StationApp {
 
   def main(args: Array[String]): Unit = {
 
-    val zookeeperConnectionString = if (args.isEmpty) "zookeeper:2181" else args(0)
+    var isTest = false
+
+    var zookeeperConnectionString = "zookeeper:2181"
+
+    if (args.length >=1 && args(0).equals("test")){
+      isTest = true
+      if (args.length >= 2) {
+        zookeeperConnectionString = args(1)
+      }
+    } else zookeeperConnectionString = args(0)
 
     val retryPolicy = new ExponentialBackoffRetry(1000, 3)
 
@@ -22,14 +31,19 @@ object StationApp {
 
     val kafkaBrokers = new String(zkClient.getData.forPath("/tw/stationStatus/kafkaBrokers"))
 
-    val stationStatusTopic = new String(zkClient.getData.watched.forPath("/tw/stationStatus/topic"))
+    var stationStatusTopic = new String(zkClient.getData.watched.forPath("/tw/stationStatus/topic"))
+    var stationInformationTopic = new String(zkClient.getData.watched.forPath("/tw/stationInformation/topic"))
+    var stationDataNYC = new String(zkClient.getData.watched.forPath("/tw/stationDataNYC/topic"))
+    var checkpointLocation = new String(zkClient.getData.watched.forPath("/tw/output/checkpointLocation"))
 
-    val stationInformationTopic = new String(zkClient.getData.watched.forPath("/tw/stationInformation/topic"))
 
-    val stationDataNYC = new String(zkClient.getData.watched.forPath("/tw/stationDataNYC/topic"))
-
-    val checkpointLocation = new String(
-      zkClient.getData.watched.forPath("/tw/stationDataNYC/checkpointLocation"))
+    if(isTest) {
+      stationStatusTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataTest/topic/status"))
+      stationInformationTopic = new String(zkClient.getData.watched.forPath("/tw/stationDataTest/topic/info"))
+      stationDataNYC = new String(zkClient.getData.watched.forPath("/tw/stationDataNYCTest/topic"))
+      checkpointLocation = new String(
+        zkClient.getData.watched.forPath("/tw/testOutput/checkpointLocation"))
+    }
 
     val spark = SparkSession.builder
       .appName("NewYorkStationTransformer")
