@@ -59,18 +59,21 @@ $zk_command create /tw/stationDataMarseille/topic station_data_marseille
 $zk_command create /tw/stationDataMarseille/checkpointLocation /tmp/tw/rawData/stationDataMarseille/checkpoints
 $zk_command create /tw/stationDataMarseille/dataLocation /tmp/tw/rawData/stationDataMarseille/data
 
-$zk_command create /tw/stationDataTest ''
-$zk_command create /tw/stationDataTest/kafkaBrokers 127.0.0.1:9092
-$zk_command create /tw/stationDataTest/topic station_data_test
-$zk_command create /tw/stationDataTest/checkpointLocation /tmp/tw/rawData/stationDataTest/checkpoints
-$zk_command create /tw/stationDataTest/dataLocation /tmp/tw/rawData/stationDataTest/data
+$zk_command create /tw/StationDataTest ''
+$zk_command create /tw/StationDataTest/kafkaBrokers 127.0.0.1:9092
+$zk_command create /tw/StationDataTest/topic/info station_mock_information
+$zk_command create /tw/StationDataTest/topic/status station_mock_status
+$zk_command create /tw/StationDataTest/topic/sf station_mock_sf
+$zk_command create /tw/StationDataTest/checkpointLocation /tmp/tw/rawData/StationDataTest/checkpoints
+$zk_command create /tw/StationDataTest/dataLocation /tmp/tw/rawData/StationDataTest/data
+
+$zk_command create /tw/testOutput ''
+$zk_command create /tw/testOutput/checkpointLocation /tmp/tw/stationMartTest/checkpoints
+$zk_command create /tw/testOutput/dataLocation /tmp/tw/stationMartTest/data
 
 $zk_command create /tw/output ''
 $zk_command create /tw/output/checkpointLocation /tmp/tw/stationMart/checkpoints
 $zk_command create /tw/output/dataLocation /tmp/tw/stationMart/data
 
-$zk_command create /tw/outputTest ''
-$zk_command create /tw/outputTest/checkpointLocationTest /tmp/tw/stationMartTest/checkpoints
-$zk_command create /tw/outputTest/dataLocationTest /tmp/tw/stationMartTest/data
 
 tail -f /dev/null

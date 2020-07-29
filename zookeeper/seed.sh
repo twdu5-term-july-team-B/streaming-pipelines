@@ -7,6 +7,10 @@ $zk_command create /tw/stationDataNYC ''
 $zk_command create /tw/stationDataNYC/topic station_data_nyc
 $zk_command create /tw/stationDataNYC/checkpointLocation hdfs://$hdfs_server/tw/rawData/stationDataNYC/checkpoints
 
+$zk_command create /tw/stationDataNYCTest ''
+$zk_command create /tw/stationDataNYCTest/topic station_mock_ny
+$zk_command create /tw/stationDataNYCTest/checkpointLocation hdfs://$hdfs_server/tw/rawData/stationDataNYCTest/checkpoints
+
 $zk_command create /tw/stationInformation ''
 $zk_command create /tw/stationInformation/kafkaBrokers $kafka_server
 $zk_command create /tw/stationInformation/topic station_information
@@ -33,14 +37,16 @@ $zk_command create /tw/stationDataMarseille/dataLocation hdfs://$hdfs_server/tw/
 
 $zk_command create /tw/stationDataTest ''
 $zk_command create /tw/stationDataTest/kafkaBrokers $kafka_server
-$zk_command create /tw/stationDataTest/topic station_data_test
+$zk_command create /tw/stationDataTest/topic/info station_mock_information
+$zk_command create /tw/stationDataTest/topic/status station_mock_status
+$zk_command create /tw/stationDataTest/topic/sf station_mock_sf
 $zk_command create /tw/stationDataTest/checkpointLocation hdfs://$hdfs_server/tw/rawData/stationDataTest/checkpoints
 $zk_command create /tw/stationDataTest/dataLocation hdfs://$hdfs_server/tw/rawData/stationDataTest/data
+
+$zk_command create /tw/testOutput ''
+$zk_command create /tw/testOutput/checkpointLocation hdfs://$hdfs_server/tw/stationMartTest/checkpoints
+$zk_command create /tw/testOutput/dataLocation hdfs://$hdfs_server/tw/stationMartTest/data
 
 $zk_command create /tw/output ''
 $zk_command create /tw/output/checkpointLocation hdfs://$hdfs_server/tw/stationMart/checkpoints
 $zk_command create /tw/output/dataLocation hdfs://$hdfs_server/tw/stationMart/data
-
-$zk_command create /tw/outputTest ''
-$zk_command create /tw/outputTest/checkpointLocationTest hdfs://$hdfs_server/tw/stationMartTest/checkpoints
-$zk_command create /tw/outputTest/dataLocationTest hdfs://$hdfs_server/tw/stationMartTest/data

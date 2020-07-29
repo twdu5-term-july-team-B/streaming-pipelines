@@ -90,10 +90,30 @@ services:
       networks:
         - streaming-data-internal
 
-    station-test-producer:
+    station-test-information-producer:
       build:
         context: ../CitibikeApiProducer
-        dockerfile: Dockerfile-station-test
+        dockerfile: Dockerfile-station-mock-information
+      depends_on:
+        - kafka
+        - zookeeper-seed
+      networks:
+        - streaming-data-internal
+
+    station-test-status-producer:
+      build:
+        context: ../CitibikeApiProducer
+        dockerfile: Dockerfile-station-mock-status
+      depends_on:
+        - kafka
+        - zookeeper-seed
+      networks:
+        - streaming-data-internal
+
+    station-test-sf-producer:
+      build:
+        context: ../CitibikeApiProducer
+        dockerfile: Dockerfile-station-mock-sf
       depends_on:
         - kafka
         - zookeeper-seed
@@ -184,6 +204,22 @@ services:
           - streaming-data-internal
         restart: on-failure
 
+    station-test-consumer:
+        build:
+            context: ../StationConsumer
+            dockerfile: Dockerfile-Test
+        depends_on:
+          - zookeeper-seed
+          - kafka
+          - station-test-status-producer
+          - station-test-sf-producer
+        volumes:
+          - ~/.ivy2:/root/.ivy2:rw
+        command: ["./wait-for.sh", "zookeeper:2181", "-t", "30"]
+        networks:
+          - streaming-data-internal
+        restart: on-failure
+
     station-transformer-nyc:
         build:
             context: ../StationTransformerNYC
@@ -193,6 +229,23 @@ services:
           - kafka
           - station-status-producer
           - station-information-producer
+        volumes:
+          - ~/.ivy2:/root/.ivy2:rw
+        command: ["./wait-for.sh", "zookeeper:2181", "-t", "30"]
+        networks:
+          - streaming-data-internal
+        restart: on-failure
+
+    station-test-transformer-nyc:
+        build:
+            context: ../StationTransformerNYC
+            dockerfile: Dockerfile-Test
+        depends_on:
+          - zookeeper-seed
+          - hadoop-seed
+          - kafka
+          - station-test-status-producer
+          - station-test-information-producer
         volumes:
           - ~/.ivy2:/root/.ivy2:rw
         command: ["./wait-for.sh", "zookeeper:2181", "-t", "30"]
