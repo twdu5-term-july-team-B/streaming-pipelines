@@ -1,0 +1,50 @@
+{
+"data": {
+"stations": [
+{
+"eightd_has_key_dispenser": false,
+"lon": -73.99392888,
+"electric_bike_surcharge_waiver": false,
+"eightd_station_services": [],
+"external_id": "66db237e-0aca-11e7-82f6-3863bb44ef7c",
+"short_name": "6926.01",
+"region_id": "71",
+"legacy_id": "72",
+"capacity": 55,
+"has_kiosk": true,
+"station_id": "72",
+"station_type": "classic",
+"rental_methods": [
+"KEY",
+"CREDITCARD"
+],
+"name": "W 52 St & 11 Ave",
+"rental_url": "http://app.citibikenyc.com/S6Lr/IBV092JufD?station_id=72",
+"lat": 40.76727216
+},
+{
+"eightd_has_key_dispenser": false,
+"lon": -74.00666661,
+"electric_bike_surcharge_waiver": false,
+"eightd_station_services": [],
+"external_id": "66db269c-0aca-11e7-82f6-3863bb44ef7c",
+"short_name": "5430.08",
+"region_id": "71",
+"legacy_id": "79",
+"capacity": 33,
+"has_kiosk": true,
+"station_id": "79",
+"station_type": "classic",
+"rental_methods": [
+"KEY",
+"CREDITCARD"
+],
+"name": "Franklin St & W Broadway",
+"rental_url": "http://app.citibikenyc.com/S6Lr/IBV092JufD?station_id=79",
+"lat": 40.71911552
+}
+]
+},
+"last_updated": 1595964180,
+"ttl": 300
+}

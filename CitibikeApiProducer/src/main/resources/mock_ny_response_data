@@ -1,0 +1,53 @@
+{
+"network": {
+"company": [
+"NYC Bike Share, LLC",
+"Motivate International, Inc.",
+"PBSC Urban Solutions"
+],
+"gbfs_href": "https://gbfs.citibikenyc.com/gbfs/gbfs.json",
+"href": "/v2/networks/citi-bike-nyc",
+"id": "citi-bike-nyc",
+"location": {
+"city": "New York, NY",
+"country": "US",
+"latitude": 40.7143528,
+"longitude": -74.00597309999999
+},
+"name": "Citi Bike",
+"stations": [
+{
+"empty_slots": 30,
+"extra": {
+"address": null,
+"last_updated": 1595962448,
+"renting": 1,
+"returning": 1,
+"uid": "3328"
+},
+"free_bikes": 9,
+"id": "46a983722ee1f51813a6a3eb6534a6e4",
+"latitude": 40.795,
+"longitude": -73.9645,
+"name": "W 100 St & Manhattan Ave",
+"timestamp": "2020-07-28T18:58:36.773000Z"
+},
+{
+"empty_slots": 37,
+"extra": {
+"address": null,
+"last_updated": 1595962459,
+"renting": 1,
+"returning": 1,
+"uid": "3724"
+},
+"free_bikes": 0,
+"id": "81872dcff5f0e5f1e042aafcc0bab6fd",
+"latitude": 40.7667405590595,
+"longitude": -73.9790689945221,
+"name": "7 Ave & Central Park South",
+"timestamp": "2020-07-28T18:58:36.786000Z"
+}
+]
+}
+}

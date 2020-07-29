@@ -3,6 +3,7 @@ package com.tw;
 import com.tw.services.ApiProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,15 +17,23 @@ public class ProducerScheduler {
     @Autowired
     private ApiProducer apiProducer;
 
+    @Autowired
+    private RestTemplate restTemplate = restTemplate();
+
     @Value("${producer.url}")
     private String url;
 
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
     @Scheduled(cron="${producer.cron}")
-    public void scheduledProducer(RestTemplate restTemplate) throws IOException {
+    public void scheduledProducer() throws IOException {
         HttpEntity<String> response;
 
-        if(url.equals("testurl")) {
-            response = new HttpEntity<>(readTestData());
+        if(url.startsWith("mock")) {
+            response = new HttpEntity<>(readTestData(url));
         }
         else{
            response = restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, String.class);
@@ -32,8 +41,8 @@ public class ProducerScheduler {
         apiProducer.sendMessage(response);
     }
 
-    public static String readTestData() throws IOException {
-        InputStream is = ProducerScheduler.class.getResourceAsStream("/mock_response_data");
+    public static String readTestData(String url) throws IOException {
+        InputStream is = ProducerScheduler.class.getResourceAsStream("/" + url);
         BufferedReader buf = new BufferedReader(new InputStreamReader(is));
         String line = buf.readLine();
         StringBuilder sb = new StringBuilder();
