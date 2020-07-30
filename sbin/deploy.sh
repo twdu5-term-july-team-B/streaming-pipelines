@@ -146,8 +146,6 @@ nohup spark-submit --master yarn --deploy-mode cluster --class com.tw.apps.Stati
 
 nohup spark-submit --master yarn --deploy-mode cluster --class com.tw.apps.StationLocationApp --name StationInformationSaverApp --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
   --driver-memory 500M --queue=streaming \
-  --conf spark.executor.memory=2g \
-  --conf spark.cores.max=1 \
   --num-executors 2 \
   --executor-cores 2 \
   --executor-memory 2G \
@@ -155,9 +153,7 @@ nohup spark-submit --master yarn --deploy-mode cluster --class com.tw.apps.Stati
 
 nohup spark-submit --master yarn --deploy-mode cluster --class com.tw.apps.StationLocationApp --name StationDataSFSaverApp --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
   --driver-memory 500M \
-  --conf spark.executor.memory=2g \
   --queue=streaming \
-  --conf spark.cores.max=1 \
   --num-executors 2 \
   --executor-cores 2 \
   --executor-memory 2G \
@@ -166,8 +162,6 @@ nohup spark-submit --master yarn --deploy-mode cluster --class com.tw.apps.Stati
 nohup spark-submit --master yarn --deploy-mode cluster --class com.tw.apps.StationLocationApp --name StationDataMarseilleSaverApp --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
   --driver-memory 500M \
   --queue=streaming \
-  --conf spark.executor.memory=2g \
-  --conf spark.cores.max=1 \
   --num-executors 2 \
   --executor-cores 2 \
   --executor-memory 2G \
@@ -203,20 +197,16 @@ echo "====Deploy Station Consumers===="
 nohup spark-submit --master yarn --deploy-mode cluster --class com.tw.apps.StationApp --name StationApp --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
   --driver-memory 500M \
   --queue=streaming \
-  --conf spark.executor.memory=2g \
-  --conf spark.cores.max=1 \
   --num-executors 4 \
-  --executor-cores 4 \
+  --executor-cores 2 \
   --executor-memory 4G \
   /tmp/tw-station-consumer_2.11-0.0.1.jar kafka.${TRAINING_COHORT}.training:2181 1>/tmp/station-consumer.log 2>/tmp/station-consumer.error.log &
 
 nohup spark-submit --master yarn --deploy-mode cluster --class com.tw.apps.StationApp --name StationTransformerNYC --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
   --driver-memory 500M \
   --queue=streaming \
-  --conf spark.executor.memory=2g \
-  --conf spark.cores.max=1 \
   --num-executors 4 \
-  --executor-cores 4 \
+  --executor-cores 2 \
   --executor-memory 4G \
   /tmp/tw-station-transformer-nyc_2.11-0.0.1.jar kafka.${TRAINING_COHORT}.training:2181 1>/tmp/station-transformer-nyc.log 2>/tmp/station-transformer-nyc.error.log &
 
